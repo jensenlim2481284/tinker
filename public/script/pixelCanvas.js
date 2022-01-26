@@ -15,7 +15,12 @@ const drawGrid = () => {
   }
 
   for (var i = 0, l = coloredPixels.length; i < l; i++) {
-    var pix = Math.floor(coloredPixels[i].y / 20) * (Math.floor(width / 10) + 1) + Math.floor(coloredPixels[i].x / 10);
+
+    pixelX = (width<=520)?Math.floor(coloredPixels[i].y / 50) : Math.floor(coloredPixels[i].y / 20) 
+    pixelW = (width%10 == 0)? (Math.floor(width / 10) ):(Math.floor(width / 10) +1 )
+     
+    var pix = pixelX *pixelW + Math.floor(coloredPixels[i].x / 10);    
+
     if (pixels[pix]) {
       pixels[pix][4] = coloredPixels[i].color;
       pixels[pix][5] = coloredPixels[i].alpha;

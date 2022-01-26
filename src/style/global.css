@@ -54,6 +54,9 @@ a {
     color: #f3f3f3;
     transition: 0.5s all;
 }
+html{
+    overflow-x: hidden;
+}
 a:hover {
     color: #c88950;
 }

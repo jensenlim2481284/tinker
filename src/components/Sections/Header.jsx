@@ -21,13 +21,13 @@ export default function Header() {
                 </h2>
                 <div id="headerButton">
                     <img src={Button}/>
-                    <a href="" className='connectWallet'>
+                    <a href="#" className='connectWallet'>
                         Mint (TBA)
                     </a>
                 </div>
                 <div id='headerSocial'>
-                    <a href=""> <img src={Twitter}/></a>
-                    <a href=""> <img src={Discord}/></a>
+                    <a target="_blank" href="https://twitter.com/NearTinkerUnion"> <img src={Twitter}/></a>
+                    <a target="_blank" href="https://discord.gg/9D5V5j5nWr"> <img src={Discord}/></a>
                 </div>
             </div>
         </div>      

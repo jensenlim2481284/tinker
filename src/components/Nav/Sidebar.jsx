@@ -40,7 +40,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="about"
+            to="aboutSection"
             spy={true}
             smooth={true}
             offset={-60}
@@ -107,10 +107,10 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
-            <a className='topSocial' href=''><img src={Twitter}/></a>
+            <a  target="_blank"  className='topSocial' href='https://twitter.com/NearTinkerUnion'><img src={Twitter}/></a>
         </li>
         <li className="semiBold font15 pointer flexCenter">
-              <a className='topSocial' href=''><img src={Discord}/></a>
+              <a target="_blank"  className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord}/></a>
         </li>
       </UlStyle>
     </Wrapper>

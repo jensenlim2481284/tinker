@@ -66,14 +66,10 @@ export default function TopNavbar() {
           </UlWrapper>       
           <UlWrapper className="flexNullCenter" style={{marginTop:"80px"}}>
             <li className="semiBold font15 pointer">
-              <Link style={{ padding: "10px 15px" }} >
-                   <a className='topSocial' href=''><img src={Twitter}/></a>
-              </Link>
+                <a target="_blank"  className='topSocial' style={{ padding: "15px 25px" }} href='https://twitter.com/NearTinkerUnion'><img src={Twitter}/></a>
             </li>
             <li className="semiBold font15 pointer">
-              <Link activeClass="active" style={{ padding: "10px 15px" }} >
-                   <a className='topSocial' href=''><img src={Discord}/></a>
-              </Link>
+                <a target="_blank"  className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord}/></a>
             </li>
             
           </UlWrapper>       
