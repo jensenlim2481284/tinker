@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 import NFT1 from "../../assets/img/picture/nft.jpg";
-import NFT2 from "../../assets/img/picture/nft1.png";
-import NFT3 from "../../assets/img/picture/nft2.png";
-import NFT4 from "../../assets/img/picture/nft3.png";
-import NFT6 from "../../assets/img/picture/nft4.png";
-import NFT7 from "../../assets/img/picture/nft5.png";
-import NFT8 from "../../assets/img/picture/nft6.png";
-import NFT9 from "../../assets/img/picture/nft7.png";
+import NFT2 from "../../assets/img/picture/nft_1.png";
+import NFT3 from "../../assets/img/picture/nft_2.png";
+import NFT4 from "../../assets/img/picture/nft_3.png";
+import NFT6 from "../../assets/img/picture/nft_4.png";
+import NFT7 from "../../assets/img/picture/nft_5.png";
+import NFT8 from "../../assets/img/picture/nft_6.png";
+import NFT9 from "../../assets/img/picture/nft_7.png";
 import NFT5 from "../../assets/img/picture/nft.gif";
 
 export default function Services() {

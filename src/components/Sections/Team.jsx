@@ -7,6 +7,8 @@ import NFT4 from "../../assets/img/picture/team/team_mxuan.png";
 
 export default function Blog() {
   return (
+    <>
+      <div id="line" ></div>
       <div id='team' className='container'>
             <h1> Our Team </h1>
             <div id='teamContent'>
@@ -22,7 +24,7 @@ export default function Blog() {
                 </div>
                 <div class='teamItem'>
                     <img src={NFT3} />
-                    <h2>Kien Seng</h2>
+                    <h2>Jensen</h2>
                     <small>The Scholar</small>
                 </div>
                 <div class='teamItem'>
@@ -32,5 +34,6 @@ export default function Blog() {
                 </div>
             </div>
       </div>
+    </>
   );
 }
