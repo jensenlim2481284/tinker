@@ -1,26 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-scroll";
-// Assets
 import CloseIcon from "../../assets/svg/CloseIcon";
-import LogoIcon from "../../assets/svg/Logo";
+import Logo from "../../assets/img/logo/logo.png";
+import Twitter from "../../assets/img/picture/twitter.png";
+import Discord from "../../assets/img/picture/discord.png";
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
   return (
-    <Wrapper className="animate darkBg" sidebarOpen={sidebarOpen}>
+    <Wrapper className="animate darkBg" id="sideNav" sidebarOpen={sidebarOpen}>
       <SidebarHeader className="flexSpaceCenter">
-        <div className="flexNullCenter">
-          <LogoIcon />
-          <h1 className="whiteColor font20" style={{ marginLeft: "15px" }}>
-            fanatic
-          </h1>
-        </div>
+       <div></div>
         <CloseBtn onClick={() => toggleSidebar(!sidebarOpen)} className="animate pointer">
           <CloseIcon />
         </CloseBtn>
       </SidebarHeader>
 
       <UlStyle className="flexNullCenter flexColumn">
+       <div className="flexNullCenter">
+            <img src={Logo} alt="logo" style={{ width: "280px"}} />
+        </div>
         <li className="semiBold font15 pointer">
           <Link
             onClick={() => toggleSidebar(!sidebarOpen)}
@@ -41,12 +40,12 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="services"
+            to="about"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Services
+            About
           </Link>
         </li>
         <li className="semiBold font15 pointer">
@@ -55,12 +54,12 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="projects"
+            to="whySection"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Projects
+            Why Mint
           </Link>
         </li>
         <li className="semiBold font15 pointer">
@@ -69,12 +68,12 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="blog"
+            to="roadmap"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Blog
+            Roadmap
           </Link>
         </li>
         <li className="semiBold font15 pointer">
@@ -83,12 +82,12 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="pricing"
+            to="team"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Pricing
+            Team
           </Link>
         </li>
         <li className="semiBold font15 pointer">
@@ -97,25 +96,21 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             activeClass="active"
             className="whiteColor"
             style={{ padding: "10px 15px" }}
-            to="contact"
+            to="faq"
             spy={true}
             smooth={true}
             offset={-60}
           >
-            Contact
+            FAQ
           </Link>
         </li>
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
-          <a href="/" style={{ padding: "10px 30px 10px 0" }} className="whiteColor">
-            Log in
-          </a>
+            <a className='topSocial' href=''><img src={Twitter}/></a>
         </li>
         <li className="semiBold font15 pointer flexCenter">
-          <a href="/" className="radius8 lightBg" style={{ padding: "10px 15px" }}>
-            Get Started
-          </a>
+              <a className='topSocial' href=''><img src={Discord}/></a>
         </li>
       </UlStyle>
     </Wrapper>

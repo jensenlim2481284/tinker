@@ -1,14 +1,63 @@
-
+#headerButton img{
+    width: 230px;
+    box-shadow: 1px 1px 8px #4e2712;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#headerButton a{
+    z-index: 2;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    color: #ebd1c4;
+    position: absolute;
+    left: 50%;
+    cursor: pointer;
+    top: 45%;
+    transform: translate(-50%,-50%);
+}
+#headerButton{
+    position: relative;
+    height: 100%;    
+    width: 230px;
+    transition: 0.6s all;
+    display: inline-block;
+}
+#headerButton:hover{
+    transform: scale(1.05);
+}
+#headerSocial{
+    display: inline-block;
+    margin-left: 25px;
+    margin-top: -35px;
+    vertical-align: middle;
+}
+#headerSocial img{
+    width: 20px;
+}
+#headerSocial a{
+    margin-right: 15px;
+    transition: 0.4s all;
+}
+#headerSocial a:hover{
+    opacity: 0.4;
+}
+.topSocial img{
+    width: 20px;
+}
 #headerBG{
-    background: url('../assets/img/picture/bg.png') no-repeat center center ; 
+    background: url('../assets/img/picture/bg1.png') no-repeat center center ; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
-    background-size: contain;
+    background-size: cover;
     background-position:center 0px !important;
     position: absolute;
     top: 0;
     left: 0;
+    right:0;
     width: 100vw;
     height: 80vh;
     margin-top: 110px;
@@ -89,7 +138,7 @@
 }
 #whySection li{
     padding: 25px 25px;
-    background: rgba(255,255,255,0.2);
+    background: linear-gradient(to right, #0e0500 0%, #29160c 100%);
     margin: 10px;
 }
 #whySection li:first-child{
@@ -196,11 +245,20 @@
     }
     #leftSide{
         width: 100%;
-        order: 2;
-        margin: 50px 0;
+        height: 100%;
+        padding-left: 0;
         text-align: center;
+        margin-top: 25%;
     }
-    
+    #headerSocial{
+        display: block;
+        margin-left: 0px;
+        margin-top: 15px;
+    }
+    #headerSocial a{
+        margin-left: 8px;
+        margin-right: 8px;
+    }
     #rightSide{
         width: 100%;
         order: 1;
@@ -214,12 +272,86 @@
     }
 }
 
-@media (max-width: 560px) {
-
-    #leftSide{
-        margin: 80px 0 50px 0;
+@media (max-width: 760px) {
+    #topLogo{
+        display: none;
+    }
+    #burgerIcon{
+        margin-top: -20px;
+        margin-right: 15px;
+    }
+    #headerBG{
+        margin-top: 70px ;
+    }
+    .ag-smoke-block{
+        margin-bottom: 11vh !important;
+    }
+    .ag-smoke_img{
+        min-width: 800px;
+    }
+    #aboutSection{
+        flex-direction: column;
+        margin-top: 15px;
+    }
+    #aboutLeft{
+        padding:0;
+        width: 50%;
+    }
+    #aboutSection h1{
+        margin-top:25px;
+    }
+    #gear2, #gear1{
+        opacity: 0.2;
+    }
+    #faqTop, #faqBottom{
+        width: 90% !important;
+    }
+    #faqContent{
+        width: 85% !important;
+    }
+    #faqBottom{
+        bottom: -35px;
+    }
+    .teamItem{
+        flex: 0 0 50% !important;
+    }
+    .teamItem.hidden{
+        display: none;
     }
 
+}
+
+@media (max-width: 520px) {
+    body, html{
+        overflow-x: hidden !important;
+    }
+    #faqBanner{
+        width: 80% !important;
+    }
+    #faqBannerSection h1{
+        top: 30px !important;
+        font-size: 1.4rem;
+    }
+    #faqBottom{
+        bottom: -1vh !important;
+    }
+    #roadmap main{
+        width: 260px !important;
+        min-width: 260px;
+    }
+    #roadmapBanner{
+        width: 300px;
+        height: 15px;
+    }
+    #roadmapBanner #bannerStart{
+        height: 55px;
+    }
+    #line{
+        width: 80% !important;
+    }
+    #whySection ul{
+        flex-direction: column;
+    }
 }
 
 #whySection{
@@ -230,78 +362,20 @@
 }
 
 
-#roadmap{
-    position: relative;
-}
 
-.timeline {
-	padding: 40px 0px;
-	width: 80%;
-	margin-bottom: 40px;
-    padding-left: 5%;
-    position: relative;
-    margin-top: 50px;
-}
-
-.timeline:before {
-	content: "";
-	position: absolute;
-	top: 40px;
-	left: 65px;
-	width: 3px;
-	height: calc(100% - 80px);
-	background: #411602;
-}
-
-.timeline .column {
-	margin: 40px 40px 40px 120px;
-    margin-bottom: 120px;
-}
-
-.timeline .column .title h1 {
-	font-size: 80px;
-    color : rgb(195 119 74 / 26%);
-	letter-spacing: 3px;
-    padding-bottom: 15px;
-    margin-left: -25px;
-    position: relative;
-}
-
-.timeline .column .title h1:before {
-	content: "";
-	position: absolute;
-    left: -94px;
-	width: 10px;
-	height: 10px;
-	background: #fff;
-	border: 3px solid #bb4907;
-    top: 50px;
-}
-
-.timeline .column .title h2 {
-	margin-top: -60px;
-	font-size: 33px;
-}
-
-.timeline .column .description p {
-	font-size: 18px;
-	line-height: 20px;	
-	margin-top: 10px;
-}
 
 
 #gear1{
     position: absolute;
-    right: -25%;
-    top: 205px;
-    width: 350px;
+    right: -150px;
+    width: 250px;
     animation: gearrotate 60s linear infinite;
 }
 #gear2{
     position: absolute;
-    right: -50px;
-    top: 140px;
-    width: 120px !important;
+    left: -80px;
+    top: 350px;
+    width: 160px !important;
     animation: gearrotate 5s linear infinite;
 }
 
@@ -396,21 +470,19 @@
   }
   .ag-smoke_img__left {
     left: 0;
-    opacity: 0.8;
     -webkit-animation: an-smoke-left 30s linear infinite;
     -moz-animation: an-smoke-left 30s linear infinite;
     -o-animation: an-smoke-left 30s linear infinite;
     animation: an-smoke-left 30s linear infinite;
-    filter: sepia(1);
+    filter: sepia(0.5);
   }
   .ag-smoke_img__right {
     right: 0;
-    opacity: 0.4;
     -webkit-animation: an-smoke-right 30s linear infinite;
     -moz-animation: an-smoke-right 30s linear infinite;
     -o-animation: an-smoke-right 30s linear infinite;
     animation: an-smoke-right 30s linear infinite;
-    filter: sepia(1);
+    filter: sepia(0.3);
   }
   
   @-webkit-keyframes an-smoke-left {
@@ -656,7 +728,7 @@
   }
 
 #team{
-    margin-top: 80px;
+    margin-top: 120px;
 }
 #teamContent{
     display: flex;
@@ -681,8 +753,10 @@
     opacity: 0.7;
 }
 #faq{
-    margin-top: 80px;
-    margin-bottom: 80px;
+    margin-top: 150px;
+    position: relative;
+    margin-bottom: 150px;
+    filter: brightness(0.8) ;
 }
 #faq h1{
     margin-bottom: 30px;
@@ -690,20 +764,187 @@
 }
 
 
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root:first-of-type, .css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type{
-    border-radius: 0 !important;
+#roadmapBanner{
+    text-align: center;
+    min-width: 300px;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
 }
-.css-1elwnq4-MuiPaper-root-MuiAccordion-root{
-    background-color: #896c53 !important;
+
+#roadmapBanner h1{
+    color: #e5bba6;
+    text-transform: uppercase;
+    text-shadow: 0 0 9px #3a1302;
 }
-p.css-ahj2mt-MuiTypography-root{
-    font-size: 1rem !important;
-    font-family: 'VT323', sans-serif !important;
+
+#roadmapBanner #bannerStart{
+    width: 100%;
+    position: absolute;
+    top: -15px;
+    left: 0;
+    z-index: -1;
 }
-.MuiAccordionSummary-content .css-ahj2mt-MuiTypography-root{
-    font-family: 'VT323', sans-serif !important;
-    font-size: 1.3rem !important;
+
+#mint{
+    position: absolute;
+    z-index: -2;
+    left: 50%;
+    top: 150px;
+    width: 150px;
+    transform: translate(-50%, -50%);
+    filter: contrast(1.5);
 }
-.css-pwcg7p-MuiCollapse-root{
-    border-bottom: 6px solid #361a02;
+
+#roadmap{
+    position: relative;
+}
+
+#roadmap main {
+    min-width: 300px;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+  }
+  
+  #roadmap p {
+    font-size: 1em;
+    line-height: 1.75em;
+    border-top: 3px solid;
+    -o-border-image: linear-gradient(to right, #0f0600 0%, #492e1e 100%);
+       border-image: linear-gradient(to right, #0f0600 0%, #492e1e  100%);
+    border-image-slice: 1;
+    border-width: 3px;
+    margin: 0;
+    padding: 40px;
+    counter-increment: section;
+    position: relative;
+    color: #cfc3b7;
+  }
+  #roadmap span{
+    font-size: 0.8rem;
+
+  }
+  #roadmap b{
+      font-size: 1.5rem;
+      display: block;
+  }
+  #roadmap p:before {
+    content: counter(section);
+    position: absolute;
+    border-radius: 50%;
+    padding: 10px;
+    height: 1.25em;
+    width: 1.25em;
+    background-color: #421800;
+    text-align: center;
+    line-height: 1.25em;
+    color: #ffffff;
+    font-size: 1em;
+  }
+  
+  #roadmap p:nth-child(odd) {
+    border-right: 3px solid;
+    padding-left: 0;
+  }
+  #roadmap p:nth-child(odd):before {
+    left: 100%;
+    margin-left: -20px;
+  }
+  #roadmap p:last-child{
+      padding-bottom: 80px;
+  }
+  #roadmap p:nth-child(even) {
+    border-left: 3px solid;
+    padding-right: 0;
+  }
+  #roadmap p:nth-child(even):before {
+    right: 100%;
+    margin-right: -20px;
+  }
+  
+  #roadmap p:first-child {
+    border-top: 0;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+  
+  #roadmap p:last-child {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  
+#line{
+    background: url('../assets/img/picture/line.png') repeat center center ; 
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    background-position: center 0px !important;
+    width: 100%;
+    height: 15px;
+    margin-top: 0;
+     min-width: 300px;
+    max-width: 500px;
+    margin: auto;
+}
+
+
+#faqTop{
+    width: 700px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    filter: contrast(1.4);
+    top: -30px;
+    margin: auto;
+    z-index: 10;
+}
+
+#faqContent{
+    background: url('../assets/img/picture/faqContent.png') repeat center center ; 
+    background-size: contain;
+    background-position: center 141px !important;
+    width: 100%;
+    height: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    filter: contrast(1.4);
+}
+
+#faqBottom{
+    width: 700px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    filter: contrast(1.4);
+    bottom: -50px;
+    margin: auto;
+    z-index: 10; 
+}
+
+#faqBannerSection{
+    margin-top: 50px;
+}
+
+#faqBanner{
+    width: 350px;
+    position: absolute;
+    top: 20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+#faqBannerSection h1{
+    position: absolute;
+    top: 40px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    color: #ddc4b0;
+    text-shadow: 0 0 9px #876826;
 }

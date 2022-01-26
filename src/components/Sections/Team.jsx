@@ -1,17 +1,19 @@
 import React from "react";
 import styled from "styled-components";
-import NFT1 from "../../assets/img/picture/nft.jpg";
-import NFT2 from "../../assets/img/picture/nft1.png";
-import NFT3 from "../../assets/img/picture/nft2.png";
-import NFT4 from "../../assets/img/picture/nft3.png";
-import NFT5 from "../../assets/img/picture/nft8.png";
-import NFT6 from "../../assets/img/picture/nft4.png";
-import NFT7 from "../../assets/img/picture/nft5.png";
-import NFT8 from "../../assets/img/picture/nft6.png";
-import NFT9 from "../../assets/img/picture/nft7.png";
+import NFT1 from "../../assets/img/picture/nft_9.png";
+import NFT2 from "../../assets/img/picture/nft_1.png";
+import NFT3 from "../../assets/img/picture/nft_2.png";
+import NFT4 from "../../assets/img/picture/nft_3.png";
+import NFT5 from "../../assets/img/picture/nft_8.png";
+import NFT6 from "../../assets/img/picture/nft_4.png";
+import NFT7 from "../../assets/img/picture/nft_5.png";
+import NFT8 from "../../assets/img/picture/nft_6.png";
+import NFT9 from "../../assets/img/picture/nft_7.png";
 
 export default function Blog() {
   return (
+    <>
+      <div id="line" ></div>
       <div id='team' className='container'>
             <h1> Our Team </h1>
             <div id='teamContent'>
@@ -25,15 +27,11 @@ export default function Blog() {
                     <h2> SteamPunker </h2>
                     <small> Founder </small>
                 </div>
-                <div class='teamItem'>
-                    <img src={NFT3} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
+                <div class='teamItem hidden'>
+                   
                 </div>
-                <div class='teamItem'>
-                    <img src={NFT4} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
+                <div class='teamItem hidden'>
+                  
                 </div>
                 <div class='teamItem'>
                     <img src={NFT5} />
@@ -46,20 +44,16 @@ export default function Blog() {
                     <h2> SteamPunker </h2>
                     <small> Founder </small>
                 </div>
+                <div class='teamItem hidden'>
+                   
+                </div>
                 <div class='teamItem'>
-                    <img src={NFT7} />
+                    <img src={NFT4} />
                     <h2> SteamPunker </h2>
                     <small> Founder </small>
                 </div>
-                <div class='teamItem'>
-                    <img src={NFT1} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
-                </div>
-                <div class='teamItem'>
-                    <img src={NFT8} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
+                <div class='teamItem hidden'>
+                   
                 </div>
                 <div class='teamItem'>
                     <img src={NFT9} />
@@ -69,5 +63,6 @@ export default function Blog() {
                
             </div>
       </div>
+    </>
   );
 }

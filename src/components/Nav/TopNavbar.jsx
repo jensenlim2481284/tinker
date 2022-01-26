@@ -5,6 +5,8 @@ import Sidebar from "../Nav/Sidebar";
 import Backdrop from "../Elements/Backdrop";
 import BurgerIcon from "../../assets/svg/BurgerIcon";
 import Logo from "../../assets/img/logo/logo.png";
+import Twitter from "../../assets/img/picture/twitter.png";
+import Discord from "../../assets/img/picture/discord.png";
 
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
@@ -22,18 +24,15 @@ export default function TopNavbar() {
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className="flexCenter animate" style={y > 100 ? { height: "100px", background:"black", marginTop:"-15px", paddingBottom:"20px" } : { height: "80px" }}>
-        <NavInner className="container flexSpaceCenter">
+      <Wrapper className="flexCenter animate" style={y > 40 && window.innerWidth > 760 ? y > 40  ?{ height: "125px", background:"black", marginTop:"-55px", paddingBottom:"20px" } : { height: "80px" } : { height: "80px",  background:"black" } }>
+        <NavInner className="container flexSpaceCenter" style={{padding:"0"}}>
             <Link className="pointer flexNullCenter" to="home" smooth={true}>
-               <img src={Logo} alt="logo" style={{ width: "60px", marginLeft: "-20px" }} />
-                <h1 style={{ marginLeft: "15px", marginTop:"15px" }} className="font20 extraBold">
-                    Tinker <br/> Union
-                </h1>
+               <img id="topLogo" src={Logo} alt="logo" style={{ width: "280px", marginLeft: "-60px", marginTop:"75px" }} />
             </Link>
-            <BurderWrapper className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
+            <BurderWrapper id="burgerIcon" className="pointer" onClick={() => toggleSidebar(!sidebarOpen)}>
                 <BurgerIcon />
             </BurderWrapper>
-          <UlWrapper className="flexNullCenter">
+          <UlWrapper className="flexNullCenter" style={{marginTop:"80px"}}>
             <li className="semiBold font15 pointer">
               <Link activeClass="active" style={{ padding: "10px 15px" }} to="home" spy={true} smooth={true} offset={-80}>
                 Home
@@ -64,6 +63,19 @@ export default function TopNavbar() {
                 FAQ
               </Link>
             </li>
+          </UlWrapper>       
+          <UlWrapper className="flexNullCenter" style={{marginTop:"80px"}}>
+            <li className="semiBold font15 pointer">
+              <Link style={{ padding: "10px 15px" }} >
+                   <a className='topSocial' href=''><img src={Twitter}/></a>
+              </Link>
+            </li>
+            <li className="semiBold font15 pointer">
+              <Link activeClass="active" style={{ padding: "10px 15px" }} >
+                   <a className='topSocial' href=''><img src={Discord}/></a>
+              </Link>
+            </li>
+            
           </UlWrapper>       
         </NavInner>
       </Wrapper>
