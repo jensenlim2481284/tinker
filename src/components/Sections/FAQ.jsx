@@ -23,11 +23,11 @@ export default function Contact() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>Where can I get one? And how do I buy?</Typography>
+                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>1. How many tinkers will there be</Typography>
                 </AccordionSummary>
                 <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
                 <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
-                  The Baepes collection: Public Minting begins at 23:00 HKT on 21 Dec 2021 on our Baepes website.
+                    There will be a total of 3,333 tinkers
                 </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -37,11 +37,12 @@ export default function Contact() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>Here's how to buy Solana:</Typography>
+                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>2. When is the mint</Typography>
                 </AccordionSummary>
                 <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
                 <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
-                    Solana also known as SOL is a cryptocurrency. This project will be on the Solana Blockchain. As a newbie in the crypto space we recommend that you sign up to Binance on your desktop.
+                     Whitelist mint is likely to be on early February 2022 and Public Mint will be on mid or late February 2022.
+			        Hop onto our discord server and stay tuned.
                 </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -51,12 +52,39 @@ export default function Contact() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>Here's how to send Solana from your Binance wallet to your Phantom wallet</Typography>
+                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>3. What is the mint price wallet</Typography>
                 </AccordionSummary>
                 <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
                 <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    Mint price will be announced when it is close to the public mint, currency will be in NEAR
+                </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion style={{ background:"transparent", padding: "0px 40px"}}>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>4. How many whitelist will there be</Typography>
+                </AccordionSummary>
+                <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
+                <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
+                    There will be 500 whitelist to be given out
+                </Typography>
+                </AccordionDetails>
+            </Accordion>
+            <Accordion style={{ background:"transparent", padding: "0px 40px"}}>
+                <AccordionSummary
+                expandIcon={<ExpandMoreIcon />}
+                aria-controls="panel1a-content"
+                id="panel1a-header"
+                >
+                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>5. How do I get a whitelist</Typography>
+                </AccordionSummary>
+                <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
+                <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
+                    There will be different challenges announced on our discord. Join our discord server and find out how you could get a whitelist spot.
                 </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -66,17 +94,16 @@ export default function Contact() {
                 aria-controls="panel1a-content"
                 id="panel1a-header"
                 >
-                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>What is the supply?</Typography>
+                <Typography  style={{ fontFamily: "VT323" , fontSize:"1.3rem"}}>6. What is the royalty percentage?</Typography>
                 </AccordionSummary>
                 <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
                 <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-                    malesuada lacus ex, sit amet blandit leo lobortis eget.
+                    5%
                 </Typography>
                 </AccordionDetails>
             </Accordion>
         </div>
-        <img src={FAQScroll} id='faqBottom'/>
+        <img src={FAQScroll} id='faqBottom'/>      
     </div>
   );
 }

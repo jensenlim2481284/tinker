@@ -102,7 +102,16 @@
 }
 #aboutRight{
     flex:3;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
+
+#aboutSection h1{
+    margin-bottom: 1em;
+    line-height: 30px;
+}
+
 #aboutLeft img {
     flex: 0 0 31.333333%;
     margin: 1%;
@@ -138,8 +147,9 @@
 }
 #whySection li{
     padding: 25px 25px;
-    background: linear-gradient(to right, #0e0500 0%, #29160c 100%);
+    background: linear-gradient(to right, #0c0806 0%, #29160c 100%);
     margin: 10px;
+    border: 3px solid #594a3c;
 }
 #whySection li:first-child{
     margin-left:0;
@@ -201,12 +211,6 @@
 #stepSection{
     padding: 80px 0px;
     margin-top: -250px;
-}
-
-#aboutSection h1{
-    margin-top: 150px;
-    margin-bottom: 25px;
-    line-height: 30px;
 }
 
 #aboutSection button{
@@ -318,7 +322,9 @@
     .teamItem.hidden{
         display: none;
     }
-
+    #whySection ul{
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 520px) {
@@ -349,9 +355,7 @@
     #line{
         width: 80% !important;
     }
-    #whySection ul{
-        flex-direction: column;
-    }
+   
 }
 
 #whySection{
@@ -737,7 +741,7 @@
 }
 
 .teamItem{
-    flex: 0 0 20%;
+    flex: 0 0 25%;
     margin-bottom: 30px;
 }
 

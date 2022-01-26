@@ -1,14 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import NFT1 from "../../assets/img/picture/nft_9.png";
-import NFT2 from "../../assets/img/picture/nft_1.png";
-import NFT3 from "../../assets/img/picture/nft_2.png";
-import NFT4 from "../../assets/img/picture/nft_3.png";
-import NFT5 from "../../assets/img/picture/nft_8.png";
-import NFT6 from "../../assets/img/picture/nft_4.png";
-import NFT7 from "../../assets/img/picture/nft_5.png";
-import NFT8 from "../../assets/img/picture/nft_6.png";
-import NFT9 from "../../assets/img/picture/nft_7.png";
+import NFT1 from "../../assets/img/picture/team/team_edward.png";
+import NFT2 from "../../assets/img/picture/team/team_henry.png";
+import NFT3 from "../../assets/img/picture/team/team_kienseng.png";
+import NFT4 from "../../assets/img/picture/team/team_mxuan.png";
 
 export default function Blog() {
   return (
@@ -19,48 +14,24 @@ export default function Blog() {
             <div id='teamContent'>
                 <div class='teamItem'>
                     <img src={NFT1} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
+                    <h2>Edward</h2>
+                    <small>The Enchanter</small>
                 </div>
                 <div class='teamItem'>
                     <img src={NFT2} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
-                </div>
-                <div class='teamItem hidden'>
-                   
-                </div>
-                <div class='teamItem hidden'>
-                  
+                    <h2>Henry</h2>
+                    <small>The Wizard</small>
                 </div>
                 <div class='teamItem'>
-                    <img src={NFT5} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
-                </div>
-               
-                <div class='teamItem'>
-                    <img src={NFT6} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
-                </div>
-                <div class='teamItem hidden'>
-                   
+                    <img src={NFT3} />
+                    <h2>Jensen</h2>
+                    <small>The Scholar</small>
                 </div>
                 <div class='teamItem'>
                     <img src={NFT4} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
+                    <h2>MXuan</h2>
+                    <small>The Florist</small>
                 </div>
-                <div class='teamItem hidden'>
-                   
-                </div>
-                <div class='teamItem'>
-                    <img src={NFT9} />
-                    <h2> SteamPunker </h2>
-                    <small> Founder </small>
-                </div>
-               
             </div>
       </div>
     </>
