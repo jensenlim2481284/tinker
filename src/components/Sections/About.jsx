@@ -28,13 +28,16 @@ export default function Services() {
 				<div id="aboutRight">
 					<h1>What is Tinker Union</h1>
 					<p className="font13">
-						3,333 tinkers are actively crafting tools and products on Nearverse.
-						We are developing a NFT launchpad on Near that makes launching NFT projects as smooth as it should be.
+						3,333 tinkers are actively crafting tools and products on Nearverse. 🛠️ ⚙️ 
 					</p>
 					<br/>
 					<p className="font13">
-						What's more exciting is that we will be opensourcing majority of our code to further drive the development and growth of the ecosystem.
-						Features that will be included in the launchpad includes: Generating NFTs and minting, Rarity ranking, whitelisting, discord verification and etc
+						We are building different tools for NFT projects including: Generating NFTs and minting, Rarity ranking, whitelisting, discord verification, sales bot and etc.
+						While these features will be part of our roadmap, we also aim to open source some of them as contribution to the community. AND, we will also launch a Near NFT launchpad by integrating these tools to make launching NEAR NFT projects easier.
+					</p>
+					<br/>
+					<p className="font13">
+						Earnings from secondary sales and launchpad will go back to the Union Wallet and dividends will be given back to our holders from time to time. Checkout more on our discord server.
 					</p>
 				</div>
 			</div>
