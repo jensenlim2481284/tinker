@@ -856,9 +856,11 @@
     font-size: 0.8rem;
 
   }
-  #roadmap b{
+  #roadmap .title{
       font-size: 1.5rem;
-      display: block;
+  }
+  #roadmap .subtitle{
+      color: #a16238;
   }
   #roadmap p:before {
     content: counter(section);

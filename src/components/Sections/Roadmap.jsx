@@ -15,27 +15,44 @@ export default function Pricing() {
             <img src={Gear} id='gear2' />
             <main>
                 <p>
-                    <span> Stage 1 </span>
-                    <b>Launch Tinker Union NFT</b>
-                     <li> Whitelist mint of 555 tinkers </li>
-                    <li> Public mint of 2,778 tinkers (Total of 3,333)</li>
-                    <li> List the collection on Paras </li>
+                    <span>Phase 1</span>
+					<br/>
+                    <b class='title'>Where it all begins</b>
+					<br/>
+					<br/>
+                    <li> <b class='subtitle'>Mint :</b> 3,333 Tinkers. 500 through whitelist and the left through public mint.</li>
+                    <li> <b class='subtitle'>Market :</b> Get listed on Paras with attributes filter. We have already got pre-approved from Paras so your tinkers could be listed immediately after public mint.</li>
+                    <li> <b class='subtitle'>DAO :</b> Set up TinkerDAO with community wallet. </li>
                 </p>            
                 <p>
-                    <span>Stage 2 </span>
-                    <b>Deliver different features </b>
-                    <li> Rarity Ranking </li>
-                    <li> Discord Verification  </li>
-                    <li> Open source some of the features built</li>
+                    <span>Phase 2 </span>
+					<br/>
+                    <b class='title'>It's time to build</b>
+					<br/>
+					<br/>
+                    <li> <b class='subtitle'>Bot :</b> Sales Bot and Rarity Bot</li>
+                    <li> <b class='subtitle'>Modularize :</b> Candy Machine, Whitelist Mint, Discord Verification. </li>
+                    <li> <b class='subtitle'>Launchpad :</b> Developing launchpad website. </li>
+                    <li> <b class='subtitle'>Open Source :</b> Open source some of the features we built. This will be determined by TinkerDAO through voting.</li>
                 </p>            
                 <p>
-                    <span> Stage 3 </span>
-                    <b>Launch the Near NFT launchpad</b>
-                    <li> Integrate different tools we developed and make a launchpad </li>
-                    <li> Appoint ambasaddors from the community </li>
-                    <li> Make a community fund wallet </li>
-                    <li> Onboard different projects to the launchpad </li>
-                </p>            
+                    <span> Phase 3 </span>
+					<br/>
+                    <b class='title'>The Launchpad</b>
+					<br/>
+					<br/>
+                    <li> <b class='subtitle'>Launchpad :</b> Officially launch the launchpad.  </li>
+                    <li> <b class='subtitle'>Onboarding :</b> Onboard different projects. </li>
+                    <li> <b class='subtitle'>Further Development :</b> Discord bot on Community Wallet funds flow. </li>
+                </p>               
+                <p>
+                    <span> Phase 4 </span>
+					<br/>
+                    <b class='title'>Roadmap 2.0</b>
+					<br/>
+					<br/>
+                    <li> <b class='subtitle'>TBA :</b> Let's see what's the next step.  </li>
+                </p>      
             </main>
       </div>
     

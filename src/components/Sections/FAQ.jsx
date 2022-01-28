@@ -98,7 +98,7 @@ export default function Contact() {
                 </AccordionSummary>
                 <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
                 <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
-                    5%
+                    8%
                 </Typography>
                 </AccordionDetails>
             </Accordion>

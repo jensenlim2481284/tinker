@@ -32,13 +32,16 @@ export default function Services() {
 					</p>
 					<br/>
 					<p className="font13">
-						We are building different tools for NFT projects including: Generating NFTs and minting, Rarity ranking, whitelisting, discord verification, sales bot and etc.
-						While these features will be part of our roadmap, we also aim to open source some of them as contribution to the community. AND, we will also launch a Near NFT launchpad by integrating these tools to make launching NEAR NFT projects easier.
+						We are building different tools for NFT projects to help growing Near community together. The features include: Generating NFTs and minting, Rarity ranking, whitelisting, discord verification, sales bot and etc.
+						Some of the features will be open sourced and some will be paid services which will be included in the NFT launchpad we are building.
 					</p>
 					<br/>
 					<p className="font13">
-						Earnings from secondary sales and launchpad will go back to the Union Wallet and dividends will be given back to our holders from time to time. Checkout more on our discord server.
+						Minting tinker(s) is like investing on the team. We strive for long term development to build something that is sustainable, profitable and during the same time, beneficial to the NEAR community.
+						
 					</p>
+					<br/>
+					<p>Earnings from secondary sales and launchpad will go back to the Community Wallet and dividends will be given back to our holders from time to time. Checkout more on our discord server.</p>
 				</div>
 			</div>
 		</>
