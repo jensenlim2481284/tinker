@@ -5,6 +5,7 @@ import CloseIcon from "../../assets/svg/CloseIcon";
 import Logo from "../../assets/img/logo/logo.png";
 import Twitter from "../../assets/img/picture/twitter.png";
 import Discord from "../../assets/img/picture/discord.png";
+import MintButton from "../Buttons/MintButton";
 
 export default function Sidebar({ sidebarOpen, toggleSidebar }) {
   return (
@@ -104,6 +105,10 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
             FAQ
           </Link>
         </li>
+        <li className="semiBold font15 pointer">
+            <MintButton action="Logout"/>
+        </li>
+        
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
@@ -112,6 +117,7 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
         <li className="semiBold font15 pointer flexCenter">
               <a target="_blank" rel="noreferrer" className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord} alt='discord'/></a>
         </li>
+      
       </UlStyle>
     </Wrapper>
   );

@@ -6,6 +6,7 @@ import Discord from "../../assets/img/picture/discord.png";
 import MintButton from "../Buttons/MintButton";
 
 export default function Header() {
+
   return (
     <div id='home' className="container flexSpaceCenter"> 
         <div id='headerBG' className="container"></div>
@@ -17,12 +18,6 @@ export default function Header() {
                 <h2 className="font15 regular" >
                     Join us and be part of the force building NFT ecosystem on NEAR
                 </h2>
-                {/* <div id="headerButton">
-                    <img src={Button}/>
-                    <a href="#" className='connectWallet'>
-                        Mint (TBA)
-                    </a>
-                </div> */}
 				<MintButton action="Login"/>
                 <div id='headerSocial'>
                     <a target="_blank" rel="noreferrer" href="https://twitter.com/NearTinkerUnion"> <img src={Twitter} alt='twitter'/></a>

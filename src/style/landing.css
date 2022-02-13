@@ -1,10 +1,26 @@
-#headerButton img{
-    width: 230px;
+#topNav .logout-btn{
+    border-left: 1px solid white !important;
+    padding-left: 15px;
+    margin-left: 17px;
+}
+.logout-btn button{
+    background: transparent !important;
+    color: white;
+    border: none !important;  
+    cursor: pointer;
+    transition: 0.5s opacity;
+}
+.logout-btn button:hover{
+    opacity: 0.4;
+}
+
+#home .mint-btn img{
+    width: 300px;
     box-shadow: 1px 1px 8px #4e2712;
     border-radius: 5px;
     cursor: pointer;
 }
-#headerButton a{
+#home .mint-btn button{
     z-index: 2;
     background: transparent;
     box-shadow: none;
@@ -17,16 +33,25 @@
     cursor: pointer;
     top: 45%;
     transform: translate(-50%,-50%);
+    width: 100%;
 }
-#headerButton{
+#home .mint-btn{
     position: relative;
     height: 100%;    
-    width: 230px;
+    width: 300px;
     transition: 0.6s all;
     display: inline-block;
 }
-#headerButton:hover{
+#home .mint-btn:hover{
     transform: scale(1.05);
+}
+
+#home .mint-btn small{
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 #headerSocial{
     display: inline-block;
@@ -229,6 +254,13 @@
 
 @media (max-width: 960px) {
 
+    #home .mint-btn small{
+        position: absolute;
+        bottom: -20px;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
     #home{
         flex-direction: column;
     }
@@ -258,7 +290,7 @@
     #headerSocial{
         display: block;
         margin-left: 0px;
-        margin-top: 15px;
+        margin-top: 45px;
     }
     #headerSocial a{
         margin-left: 8px;

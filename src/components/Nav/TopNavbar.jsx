@@ -7,6 +7,7 @@ import BurgerIcon from "../../assets/svg/BurgerIcon";
 import Logo from "../../assets/img/logo/logo.png";
 import Twitter from "../../assets/img/picture/twitter.png";
 import Discord from "../../assets/img/picture/discord.png";
+import MintButton from "../Buttons/MintButton";
 
 export default function TopNavbar() {
   const [y, setY] = useState(window.scrollY);
@@ -24,7 +25,7 @@ export default function TopNavbar() {
     <>
       <Sidebar sidebarOpen={sidebarOpen} toggleSidebar={toggleSidebar} />
       {sidebarOpen && <Backdrop toggleSidebar={toggleSidebar} />}
-      <Wrapper className="flexCenter animate" style={y > 40 && window.innerWidth > 760 ? y > 40  ?{ height: "125px", background:"black", marginTop:"-55px", paddingBottom:"20px" } : { height: "80px" } : { height: "80px",  background:"black" } }>
+      <Wrapper id="topNav" className="flexCenter animate" style={y > 40 && window.innerWidth > 760 ? y > 40  ?{ height: "125px", background:"black", marginTop:"-55px", paddingBottom:"20px" } : { height: "80px" } : { height: "80px",  background:"black" } }>
         <NavInner className="container flexSpaceCenter" style={{padding:"0"}}>
             <Link className="pointer flexNullCenter" to="home" smooth={true}>
                <img id="topLogo" src={Logo} alt="logo" style={{ width: "280px", marginLeft: "-60px", marginTop:"75px" }} />
@@ -70,6 +71,9 @@ export default function TopNavbar() {
             </li>
             <li className="semiBold font15 pointer">
                 <a target="_blank" rel="noreferrer" className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord} alt="discord"/></a>
+            </li>
+            <li className="semiBold font15 pointer">
+               <MintButton action="Logout"/>
             </li>
             
           </UlWrapper>       
