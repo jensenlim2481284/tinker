@@ -66,10 +66,10 @@ export default function TopNavbar() {
           </UlWrapper>       
           <UlWrapper className="flexNullCenter" style={{marginTop:"80px"}}>
             <li className="semiBold font15 pointer">
-                <a target="_blank"  className='topSocial' style={{ padding: "15px 25px" }} href='https://twitter.com/NearTinkerUnion'><img src={Twitter}/></a>
+                <a target="_blank" rel="noreferrer" className='topSocial' style={{ padding: "15px 25px" }} href='https://twitter.com/NearTinkerUnion'><img src={Twitter} alt="twitter"/></a>
             </li>
             <li className="semiBold font15 pointer">
-                <a target="_blank"  className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord}/></a>
+                <a target="_blank" rel="noreferrer" className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord} alt="discord"/></a>
             </li>
             
           </UlWrapper>       
@@ -108,10 +108,10 @@ const UlWrapper = styled.ul`
     display: none;
   }
 `;
-const UlWrapperRight = styled.ul`
-  @media (max-width: 760px) {
-    display: none;
-  }
-`;
+// const UlWrapperRight = styled.ul`
+//   @media (max-width: 760px) {
+//     display: none;
+//   }
+// `;
 
 

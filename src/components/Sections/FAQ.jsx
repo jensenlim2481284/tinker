@@ -5,16 +5,15 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import Typography from '@mui/material/Typography';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import FAQScroll from "../../assets/img/picture/faqTop.png";
-import FAQContent from "../../assets/img/picture/faqContent.png";
 import FAQBanner from "../../assets/img/picture/faqBanner.png";
 
 export default function Contact() {
   return (
     <div id='faq' className='container'>
-        <img src={FAQScroll} id='faqTop'/>
+        <img src={FAQScroll} id='faqTop' alt="faq top"/>
         <div id='faqContent'>
             <div id='faqBannerSection'>
-                <img src={FAQBanner} id='faqBanner'/>
+                <img src={FAQBanner} id='faqBanner' alt='banner'/>
                 <h1> FAQ </h1>
             </div>        
             <Accordion style={{ borderRadius: "0px" , background:"transparent", padding: "0px 40px"}}>
@@ -70,7 +69,7 @@ export default function Contact() {
                 </AccordionSummary>
                 <AccordionDetails style={{borderBottom:"3px solid #8a5e37"}}>
                 <Typography style={{ fontFamily: "VT323" , fontSize:"1rem"}}>
-                    There will be 500 whitelist to be given out
+                    There will be 1,000 whitelist to be given out
                 </Typography>
                 </AccordionDetails>
             </Accordion>
@@ -103,7 +102,7 @@ export default function Contact() {
                 </AccordionDetails>
             </Accordion>
         </div>
-        <img src={FAQScroll} id='faqBottom'/>      
+        <img src={FAQScroll} id='faqBottom' alt="faq bottom"/>      
     </div>
   );
 }

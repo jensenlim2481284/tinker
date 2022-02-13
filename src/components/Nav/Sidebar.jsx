@@ -107,10 +107,10 @@ export default function Sidebar({ sidebarOpen, toggleSidebar }) {
       </UlStyle>
       <UlStyle className="flexSpaceCenter">
         <li className="semiBold font15 pointer">
-            <a  target="_blank"  className='topSocial' href='https://twitter.com/NearTinkerUnion'><img src={Twitter}/></a>
+            <a  target="_blank" rel="noreferrer" className='topSocial' href='https://twitter.com/NearTinkerUnion'><img src={Twitter} alt='twitter'/></a>
         </li>
         <li className="semiBold font15 pointer flexCenter">
-              <a target="_blank"  className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord}/></a>
+              <a target="_blank" rel="noreferrer" className='topSocial' href='https://discord.gg/9D5V5j5nWr'><img src={Discord} alt='discord'/></a>
         </li>
       </UlStyle>
     </Wrapper>
