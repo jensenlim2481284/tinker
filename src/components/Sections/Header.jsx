@@ -24,7 +24,7 @@ export default function Header() {
                     <a target="_blank" rel="noreferrer" href="https://discord.gg/9D5V5j5nWr"> <img src={Discord} alt='discord'/></a>
                 </div>
             </div>
-        </div>      
+        </div>  
         <div className="ag-smoke-block">
             <picture>
                 <img src="https://raw.githubusercontent.com/SochavaAG/example-mycode/master/pens/animation-smoke-images/images/smoke-pink.png" alt="smoke-pink" className="ag-smoke_img ag-smoke_img__right" width="1920" height="1080"/>

@@ -58,9 +58,6 @@ export default function MintButton({ action }) {
                 );
                 setNftCount(await nftContract.get_presales_count());
 
-                // Hide social button ( top bar duplicate )
-                document.getElementById('headerSocial').style.display = 'none';
-
             }    
 
 		}
@@ -163,7 +160,7 @@ export default function MintButton({ action }) {
                 if(isLogIn)
                 {
                     if(!isPublicMintDate && !isWhitelisted)
-                        return (<small id="mintDesc">-  You are not whitelisted, please join the public mint later  -</small>)
+                        return (<small id="mintDesc" style={{ textAlign: "left"}}>-  You are not whitelisted, please join the public mint later  -</small>)
                     return (<small id="mintDesc">{(isWhitelisted)?'-  You are whitelisted  -':'-  You are not whitelisted  -'}</small>)                
                 }
                 return (<></>);
@@ -172,7 +169,18 @@ export default function MintButton({ action }) {
             // Mint count component 
             function mintCount(){
                 if(isLogIn)
-                    return (<p id="mintCount">NFT Count - {nftCount} </p>)                
+                    var percent = parseInt(nftCount/maxSupply * 100);
+                    return (
+                        <div id="mintCount" className="container ">
+                            <div id="mintCountDesc">
+                                <span id='mintPercent'>{percent}%</span>
+                                <span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
+                            </div>
+                            <div className="progress-bar">
+                                <span className="progress-bar-fill" style={{width : percent + "%"}}></span>
+                            </div>
+                        </div>
+                    )                
                 return (<></>);
             }
 
@@ -181,12 +189,14 @@ export default function MintButton({ action }) {
             function mintBtn(enabled = true, isMint = true, date = null){
                 
                 return ( 
-                    <div className="mint-btn"> 
-                        <img src={Button} />
-                        {btn(enabled, isMint, date)}
-                        {wlDesc(wlDesc)}
-                        {mintCount()}
-                    </div>
+                    <>
+                        <div className="mint-btn"> 
+                            <img src={Button} />
+                            {btn(enabled, isMint, date)}
+                            {wlDesc(wlDesc)}
+                        </div>
+                         {mintCount()}
+                    </>
                 );
 
             }
@@ -227,6 +237,7 @@ export default function MintButton({ action }) {
 
 
 // Define NEAR variable 
+const maxSupply = process.env.REACT_APP_MAX_SUPPLY;
 const successUrl = process.env.REACT_APP_SUCCESS_URL;
 const failureUrl = process.env.REACT_APP_FAILURE_URL;
 const FTContractID = process.env.REACT_APP_FT_CONTRACT_ID;
