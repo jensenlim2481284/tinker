@@ -174,7 +174,7 @@ export default function MintButton({ action }) {
                         <div id="mintCount" className="container ">
                             <div id="mintCountDesc">
                                 <span id='mintPercent'>{percent}%</span>
-                                <span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
+                                <span id='mintCountLeft'>NFT Left -  {maxSupply - nftCount} / {maxSupply}</span>
                             </div>
                             <div className="progress-bar">
                                 <span className="progress-bar-fill" style={{width : percent + "%"}}></span>
@@ -253,7 +253,7 @@ const config = {
 };
 
 // Define mint date variable 
-const whitelistMintDate = new Date(process.env.REACT_APP_WL_MINT_DATE);
+const whitelistMintDate = new Date(process.env.REACT_APP_WL_MINT_DATE  * 1000);
 const isWhitelistMintDate = (whitelistMintDate.getTime() <= new Date().getTime());
-const publicMintDate =  new Date(process.env.REACT_APP_PUBLIC_MINT_DATE);
+const publicMintDate =  new Date(process.env.REACT_APP_PUBLIC_MINT_DATE * 1000);
 const isPublicMintDate = (publicMintDate.getTime() <= new Date().getTime());
