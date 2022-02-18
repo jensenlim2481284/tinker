@@ -6,85 +6,85 @@ import { connect, WalletConnection, keyStores, Contract, utils } from 'near-api-
 
 
 export default function MintButton({ action }) {
-    
 
-    // Define hook variable 
+
+	// Define hook variable 
 	const [wallet, setWallet] = useState(null);
 	const [isLogIn, setIsLogin] = useState(false);
 	const [nftCount, setNftCount] = useState(null);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isWhitelisted, setIsWhitelisted] = useState(null);
+	const quantity = 1
 
-
-    // Hook function 
+	// Hook function 
 	useEffect(async () => {
 
-        // Function to keep track of NEAR wallet connection
+		// Function to keep track of NEAR wallet connection
 		async function connectWallet() {
 
-            // Check wallet connection and set hook variable 
+			// Check wallet connection and set hook variable 
 			const walletConnection = new WalletConnection(await connect(config));
 			setIsLogin(walletConnection.isSignedIn())
 			setWallet(walletConnection)
 
-            // If connected wallet 
-            if(walletConnection.isSignedIn()){
+			// If connected wallet 
+			if (walletConnection.isSignedIn()) {
 
-                // Get connected account 
-                const account = walletConnection.account()
+				// Get connected account 
+				const account = walletConnection.account()
 
-                // Check if whitelisted 
-                const ftContract = new Contract(
-                    account,
-                    FTContractID,
-                    {
-                        viewMethods: ['ft_balance_of'],
-                        changeMethods: [],
-                        sender: account,
-                    }
-                );
-                let ftBalance = await ftContract.ft_balance_of({account_id:account.accountId})
-                setIsWhitelisted(ftBalance > 0);
+				// Check if whitelisted 
+				const ftContract = new Contract(
+					account,
+					FTContractID,
+					{
+						viewMethods: ['ft_balance_of'],
+						changeMethods: [],
+						sender: account,
+					}
+				);
+				let ftBalance = await ftContract.ft_balance_of({ account_id: account.accountId })
+				setIsWhitelisted(ftBalance > 0);
+				
+				// Check how many nft left 
+				const nftContract = new Contract(
+					account,
+					NFTContractID,
+					{
+						viewMethods: ['get_presales_count'],
+						changeMethods: ['nft_candy_machine'],
+						sender: account,
+					}
+				);
+				setNftCount(await nftContract.get_presales_count());
 
-                // Check how many nft left 
-                const nftContract = new Contract(
-                    account, 
-                    NFTContractID,
-                    {
-                        viewMethods: ['get_presales_count'],
-                        changeMethods: ['nft_candy_machine'],
-                        sender: account,
-                    }
-                );
-                setNftCount(await nftContract.get_presales_count());
-
-            }    
+			}
 
 		}
-      
+
 		connectWallet();
 
 	}, []);
 
 
-    // Return mint ( NEAR ) button based on condition & action 
-    return renderButton();
+	// Return mint ( NEAR ) button based on condition & action 
+	return renderButton();
 
 
 
-    // Function to logout NEAR wallet 
-    async function logout(){
-        wallet.signOut();
-        window.location.replace(window.location.origin + window.location.pathname);
-    }
+	// Function to logout NEAR wallet 
+	async function logout() {
+		wallet.signOut();
+		window.location.replace(window.location.origin + window.location.pathname);
+	}
 
 
-    // Function to mint NFT
+	// Function to mint NFT
 	async function mintHandler() {
 
-        // If not yet connect NEAR wallet, login with NEAR
-        if (!isLogIn) 
-            wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
+		// If not yet connect NEAR wallet, login with NEAR
+		if (!isLogIn)
+			wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
 
 		setIsLoading(true)
 		const account = wallet.account()
@@ -97,147 +97,149 @@ export default function MintButton({ action }) {
 				sender: account,
 			}
 		);
+		let nearAmount = parseInt(mintPrice) * quantity
+		nearAmount = nearAmount.toString()
 		let response = await nftContract.nft_candy_machine({
-			receiver_id: account.accountId
-		}, '300000000000000', utils.format.parseNearAmount('5'))
+			receiver_id: account.accountId,
+			quantity
+		}, '300000000000000', utils.format.parseNearAmount(nearAmount))
 		setIsLoading(false)
 	}
 
 
-    // Function to return button text based on action and state
+	// Function to return button text based on action and state
 	function getText(isMint = true, date = null) {
 
 		if (isLoading) return 'Loading...'
 		if (isLogIn) {
-            
-            if(isMint === true) return 'Mint Now';
-            else if (isMint == 'out') return 'Mint Out';
-            else {                
-                
-                // Renderer countdown callback with condition
-                const renderer = ({total, days,  hours, minutes, seconds, completed }) => {
-                    if (completed) 
-                        window.location.replace(window.location.origin + window.location.pathname);                    
-                    else 
-                        return ( <span> {days*24 + hours}H {minutes}M {seconds}S </span>);
-                };
 
-                return ( <Countdown date={date} renderer={renderer} />);
-            }
+			if (isMint === true) return 'Mint Now';
+			else if (isMint == 'out') return 'Mint Out';
+			else {
 
-        }
+				// Renderer countdown callback with condition
+				const renderer = ({ total, days, hours, minutes, seconds, completed }) => {
+					if (completed)
+						window.location.replace(window.location.origin + window.location.pathname);
+					else
+						return (<span> {days * 24 + hours}H {minutes}M {seconds}S </span>);
+				};
+
+				return (<Countdown date={date} renderer={renderer} />);
+			}
+
+		}
 		return 'Connect Wallet';
 	}
 
 
 
-    // Main Function to render button based on condition & action 
-    function renderButton(){
+	// Main Function to render button based on condition & action 
+	function renderButton() {
 
-        // Return logout button 
-        if(action == 'Logout'){
-            if(isLogIn)
-                return (
-                    <div className="logout-btn ">
-                        <button className="font15" onClick={() => logout()}>Logout</button>
-                    </div>
-                )
-            return (<></>)
-        }
+		// Return logout button 
+		if (action == 'Logout') {
+			if (isLogIn)
+				return (
+					<div className="logout-btn ">
+						<button className="font15" onClick={() => logout()}>Logout</button>
+					</div>
+				)
+			return (<></>)
+		}
 
-        // Return mint button component based on mint date condition 
-        else {
+		// Return mint button component based on mint date condition 
+		else {
 
-            // button component 
-            function btn(enabled, isMint, date){
-                if(enabled)
-                    return ( <button onClick={() => mintHandler()}>{getText(isMint, date)}</button>);
-                return ( <button disabled>{getText(isMint, date)}</button>);
-            }
+			// button component 
+			function btn(enabled, isMint, date) {
+				if (enabled)
+					return (<button onClick={() => mintHandler()}>{getText(isMint, date)}</button>);
+				return (<button disabled>{getText(isMint, date)}</button>);
+			}
 
-            // Whitelist description component 
-            function wlDesc(){
-                if(isLogIn)
-                {
-                    if(!isPublicMintDate && !isWhitelisted)
-                        return (<small id="mintDesc" style={{ textAlign: "left"}}>-  You are not whitelisted, please join the public mint later  -</small>)
-                    return (<small id="mintDesc">{(isWhitelisted)?'-  You are whitelisted  -':'-  You are not whitelisted  -'}</small>)                
-                }
-                return (<></>);
-            }
+			// Whitelist description component 
+			function wlDesc() {
+				if (isLogIn) {
+					if (!isPublicMintDate && !isWhitelisted)
+						return (<small id="mintDesc" style={{ textAlign: "left" }}>-  You are not whitelisted, please join the public mint later  -</small>)
+					return (<small id="mintDesc">{(isWhitelisted) ? '-  You are whitelisted  -' : '-  You are not whitelisted  -'}</small>)
+				}
+				return (<></>);
+			}
 
-            // Mint count component 
-            function mintCount(){
-                if(isLogIn)
-                    var percent = parseInt(nftCount/maxSupply * 100);
-                    return (
-                        <div id="mintCount" className="container ">
-                            <div id="mintCountDesc">
-                                <span id='mintPercent'>{percent}%</span>
-                                <span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
-                            </div>
-                            <div className="progress-bar">
-                                <span className="progress-bar-fill" style={{width : percent + "%"}}></span>
-                            </div>
-                        </div>
-                    )                
-                return (<></>);
-            }
+			// Mint count component 
+			function mintCount() {
+				if (isLogIn)
+					var percent = parseInt(nftCount / maxSupply * 100);
+				return (
+					<div id="mintCount" className="container ">
+						<div id="mintCountDesc">
+							<span id='mintPercent'>{percent}%</span>
+							<span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
+						</div>
+						<div className="progress-bar">
+							<span className="progress-bar-fill" style={{ width: percent + "%" }}></span>
+						</div>
+					</div>
+				)
+				return (<></>);
+			}
 
-            
-            // mint button component 
-            function mintBtn(enabled = true, isMint = true, date = null){
-                
-                return ( 
-                    <>
-                        <div className="mint-btn"> 
-                            <img src={Button} />
-                            {btn(enabled, isMint, date)}
-                            {wlDesc(wlDesc)}
-                        </div>
-                         {mintCount()}
-                    </>
-                );
 
-            }
+			// mint button component 
+			function mintBtn(enabled = true, isMint = true, date = null) {
 
-            // If not yet connect wallet 
-            if(!isLogIn)
-                return mintBtn();
+				return (
+					<>
+						<div className="mint-btn">
+							<img src={Button} />
+							{btn(enabled, isMint, date)}
+							{wlDesc(wlDesc)}
+						</div>
+						{mintCount()}
+					</>
+				);
 
-            // If not yet reach whitelist mint date 
-            if(!isWhitelistMintDate)
-                return mintBtn(false, false, whitelistMintDate);
-            else {
+			}
 
-                // If not yet reach public mint date 
-                if(!isPublicMintDate){
+			// If not yet connect wallet 
+			if (!isLogIn)
+				return mintBtn();
 
-                    // If user is whitelisted - able to mint 
-                    if(isWhitelisted)
-                        return mintBtn(true);                                     
-                    else 
-                        return mintBtn(false, false, publicMintDate);
-                  
-                }
-                else 
-                {
+			// If not yet reach whitelist mint date 
+			if (!isWhitelistMintDate)
+				return mintBtn(false, false, whitelistMintDate);
+			else {
 
-                    // Check if mint out 
-                    if(nftCount <= 0)
-                        return mintBtn(false, 'out');
-                    else 
-                        return mintBtn(true);      
-                }
-            }
-        }
-    }
-    
+				// If not yet reach public mint date 
+				if (!isPublicMintDate) {
+
+					// If user is whitelisted - able to mint 
+					if (isWhitelisted)
+						return mintBtn(true);
+					else
+						return mintBtn(false, false, publicMintDate);
+
+				}
+				else {
+
+					// Check if mint out 
+					if (nftCount <= 0)
+						return mintBtn(false, 'out');
+					else
+						return mintBtn(true);
+				}
+			}
+		}
+	}
+
 }
 
 
 // Define NEAR variable 
 const maxSupply = process.env.REACT_APP_MAX_SUPPLY;
+const mintPrice = process.env.REACT_APP_MINT_PRICE;
 const successUrl = process.env.REACT_APP_SUCCESS_URL;
 const failureUrl = process.env.REACT_APP_FAILURE_URL;
 const FTContractID = process.env.REACT_APP_FT_CONTRACT_ID;
@@ -255,5 +257,5 @@ const config = {
 // Define mint date variable 
 const whitelistMintDate = new Date(process.env.REACT_APP_WL_MINT_DATE);
 const isWhitelistMintDate = (whitelistMintDate.getTime() <= new Date().getTime());
-const publicMintDate =  new Date(process.env.REACT_APP_PUBLIC_MINT_DATE);
+const publicMintDate = new Date(process.env.REACT_APP_PUBLIC_MINT_DATE);
 const isPublicMintDate = (publicMintDate.getTime() <= new Date().getTime());
