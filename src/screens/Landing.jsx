@@ -16,6 +16,7 @@ export default function Landing() {
     // Modal 
     const [modal, setModal] = useState(false);
     const handleModalClose = () => setModal(false);
+    const [modalErr, setModalErr] = useState(null);
 
     // Hook function 
     useEffect(() => {
@@ -23,6 +24,7 @@ export default function Landing() {
         // Function to check if minted
         async function checkResponse() {
             let url = new URL(window.location.href);
+            setModalErr(url.searchParams.get('errorMessage'));
             if (url.searchParams.get('mint')) 
                 setModal(true);        
         }
@@ -45,7 +47,7 @@ export default function Landing() {
         <Modal id='responseModal' show={modal} onHide={handleModalClose} >
             <Modal.Body style={{ background: "url("+ModalBG+")" }}>
                 <div className='promptBody'>
-                    <p className="font20">Successfuly Minted</p>
+                    <p className="font20">{ (modalErr)?decodeURIComponent(modalErr):"Successfuly Minted" }</p>
                     <div className="promptBtnSection">
                         <button className="promptClose" onClick={handleModalClose}> ✕  </button>
                     </div>
