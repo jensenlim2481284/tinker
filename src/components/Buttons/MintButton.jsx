@@ -126,7 +126,6 @@ export default function MintButton({ action }) {
             if (quantity > wlcheck)
                 err = "Maximum mint quantity is " + wlcheck;
         }
-
 		
 		if (err !== null) {
 			let errElement = document.getElementById("promptErr");
@@ -171,9 +170,10 @@ export default function MintButton({ action }) {
 		if (isLogIn) {
 
 			if (isMint === true){
+                if(isPublicMintDate)
+                    return 'Mint Now';
                 if(isWhitelistMintDate && isWhitelisted)
                     return 'Whitelist Mint';
-                return 'Mint Now';
             }
 			else if (isMint === 'out') return 'Mint Out';
 			else {
@@ -225,7 +225,7 @@ export default function MintButton({ action }) {
                     if(isWhitelistMintDate && !isPublicMintDate){
                         if(isWhitelisted)
                            	return (<small id="mintDesc">-  You are whitelisted : {wltoken} WL token(s) -</small>)
-                        return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-45px" }}>You are not whitelisted, please join the public mint later</small>)
+                        return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-45px" }}>You don't have WL token left, please join the public mint later</small>)
                     }
 				}
 				return (<></>);
@@ -326,6 +326,7 @@ export default function MintButton({ action }) {
 
 				// If not yet reach public mint date 
 				if (!isPublicMintDate) {
+                    
 
 					// If user is whitelisted - able to mint 
 					if (isWhitelisted)
