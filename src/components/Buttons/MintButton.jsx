@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import { Modal } from 'react-bootstrap';
 import Countdown from 'react-countdown';
 import React, { useState, useEffect } from 'react';
@@ -17,13 +16,13 @@ export default function MintButton({ action }) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isWhitelisted, setIsWhitelisted] = useState(null);
 
-    // Modal 
-    const [prompt, setPrompt] = useState(false);
-    const handlePromptClose = () => setPrompt(false);
-    const handlePromptShow = () => setPrompt(true);
-    
+	// Modal 
+	const [prompt, setPrompt] = useState(false);
+	const handlePromptClose = () => setPrompt(false);
+	const handlePromptShow = () => setPrompt(true);
+
 	// Hook function 
-	useEffect(async () => {
+	useEffect(() => {
 
 		// Function to keep track of NEAR wallet connection
 		async function connectWallet() {
@@ -51,7 +50,7 @@ export default function MintButton({ action }) {
 				);
 				let ftBalance = await ftContract.ft_balance_of({ account_id: account.accountId })
 				setIsWhitelisted(ftBalance > 0);
-				
+
 				// Check how many nft left 
 				const nftContract = new Contract(
 					account,
@@ -85,34 +84,53 @@ export default function MintButton({ action }) {
 	}
 
 
-	// Function to mint NFT
+	// Function to handle mint
 	async function mintHandler() {
 
-        // Validate quantity
-        var err =null;
-        var quantity = document.getElementById("promptQuantity").value;
-        if(!/^[0-9]+$/.test(quantity))
-            err = "Please only enter numeric characters only!";
-        if(quantity <= 0)
-            err = "Minimum mint quantity is 1";
-        if(quantity > nftCount)
-            err = "Maximum mint quantity is " + nftCount;
-        if(err !== null)
-        {
-            let errElement = document.getElementById("promptErr");
-            errElement.innerHTML= err;
-            errElement.style.display = "block";
-            return false;
-        }
+		setIsLoading(true)
+
+		// If not yet connect NEAR wallet, login with NEAR
+		if (!isLogIn)
+			wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
+		// Open modal 
+		else
+			handlePromptShow();
+
+		setIsLoading(false)
+	}
+
+	// Function to mint NFT
+	async function mintNFT() {
+
 
 		// If not yet connect NEAR wallet, login with NEAR
 		if (!isLogIn)
 			wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
 
+		// Validate quantity
+		var err = null;
+		var quantity = document.getElementById("promptQuantity").value;
+		if (!/^[0-9]+$/.test(quantity))
+			err = "Please only enter numeric characters only!";
+		if (quantity <= 0)
+			err = "Minimum mint quantity is 1";
+		if (quantity > nftCount)
+			err = "Maximum mint quantity is " + nftCount;
+		if (err !== null) {
+			let errElement = document.getElementById("promptErr");
+			errElement.innerHTML = err;
+			errElement.style.display = "block";
+			return false;
+		}
+
+		// Redirect to NEAR wallet and mint 
 		setIsLoading(true)
+		quantity = parseInt(quantity);
+		let nearAmount = parseInt(mintPrice) * quantity
+		nearAmount = utils.format.parseNearAmount(nearAmount.toString())
 		const account = wallet.account()
 		const nftContract = new Contract(
-			account, 
+			account,
 			NFTContractID,
 			{
 				viewMethods: ['get_presales_count'],
@@ -120,19 +138,14 @@ export default function MintButton({ action }) {
 				sender: account,
 			}
 		);
-
-        quantity = parseInt(quantity);
-		let nearAmount = parseInt(mintPrice) * quantity
-		nearAmount =  utils.format.parseNearAmount(nearAmount.toString())
-		let response = await nftContract.nft_candy_machine({
-            callbackUrl:'http://localhost:3000/?mint=true&',
-            args :{
-                receiver_id: account.accountId,
-                quantity,
-                callbackUrl:'https://test.com',
-            },   
-            gas: '300000000000000',     
-            amount: nearAmount         
+		await nftContract.nft_candy_machine({
+			callbackUrl: 'http://localhost:3000/?mint=true&',
+			args: {
+				receiver_id: account.accountId,
+				quantity,
+			},
+			gas: '300000000000000',
+			amount: nearAmount
 		});
 
 		setIsLoading(false)
@@ -146,7 +159,7 @@ export default function MintButton({ action }) {
 		if (isLogIn) {
 
 			if (isMint === true) return 'Mint Now';
-			else if (isMint == 'out') return 'Mint Out';
+			else if (isMint === 'out') return 'Mint Out';
 			else {
 
 				// Renderer countdown callback with condition
@@ -170,7 +183,7 @@ export default function MintButton({ action }) {
 	function renderButton() {
 
 		// Return logout button 
-		if (action == 'Logout') {
+		if (action === 'Logout') {
 			if (isLogIn)
 				return (
 					<div className="logout-btn ">
@@ -186,7 +199,7 @@ export default function MintButton({ action }) {
 			// button component 
 			function btn(enabled, isMint, date) {
 				if (enabled)
-					return (<button onClick={handlePromptShow}>{getText(isMint, date)}</button>);
+					return (<button onClick={() => mintHandler()}>{getText(isMint, date)}</button>);
 				return (<button disabled>{getText(isMint, date)}</button>);
 			}
 
@@ -194,7 +207,7 @@ export default function MintButton({ action }) {
 			function wlDesc() {
 				if (isLogIn) {
 					if (!isPublicMintDate && !isWhitelisted)
-						return (<small id="mintDesc" style={{ textAlign: "left" , bottom:"-35px"}}>You are not whitelisted, please join the public mint later</small>)
+						return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-35px" }}>You are not whitelisted, please join the public mint later</small>)
 					return (<small id="mintDesc">{(isWhitelisted) ? '-  You are whitelisted  -' : '-  You are not whitelisted  -'}</small>)
 				}
 				return (<></>);
@@ -202,19 +215,20 @@ export default function MintButton({ action }) {
 
 			// Mint count component 
 			function mintCount() {
-				if (isLogIn)
-					var percent = parseInt((maxSupply-nftCount) / maxSupply * 100);
-				return (
-					<div id="mintCount" className="container ">
-						<div id="mintCountDesc">
-							<span id='mintPercent'>{percent}%</span>
-							<span id='mintCountLeft'>Tinkers Deployed -  {maxSupply-nftCount} / {maxSupply}</span>
+				if (isLogIn) {
+					var percent = parseInt(maxSupply - nftCount / maxSupply * 100);
+					return (
+						<div id="mintCount" className="container ">
+							<div id="mintCountDesc">
+								<span id='mintPercent'>{percent}%</span>
+								<span id='mintCountLeft'>Tinkers Deployed - {maxSupply - nftCount} / {maxSupply}</span>
+							</div>
+							<div className="progress-bar">
+								<span className="progress-bar-fill" style={{ width: percent + "%" }}></span>
+							</div>
 						</div>
-						<div className="progress-bar">
-							<span className="progress-bar-fill" style={{ width: percent + "%" }}></span>
-						</div>
-					</div>
-				)
+					)
+				}
 				return (<></>);
 			}
 
@@ -225,32 +239,32 @@ export default function MintButton({ action }) {
 				return (
 					<>
 						<div className="mint-btn">
-                            <div className="mint-btn-section">
-                                <img src={Button} />
-                                {btn(enabled, isMint, date)}
-                            </div>
+							<div className="mint-btn-section">
+								<img src={Button} alt="Button background" />
+								{btn(enabled, isMint, date)}
+							</div>
 							{wlDesc(wlDesc)}
 						</div>
-						{mintCount()}             
+						{mintCount()}
 
-                        <Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
-                            <Modal.Body  style={{ background: "url("+ModalBG+")" }}>
-                                <div className='promptBody'>
-                                    <p className="font20">How many tinker you want to mint (Max 10 in single transaction)</p>
-                                    <input type='number' step="1" min="1" max={nftCount} id="promptQuantity" className="font20" defaultValue="1"/>
-                                    <small id="promptErr">  </small>
-                                    <div className="promptBtnSection">
-                                        <button className="promptClose" onClick={handlePromptClose}>
-                                            ✕
-                                        </button>
-                                        <button id="mintBtn" className="shake-slow-animation" onClick={() => mintHandler()}>
-                                            Confirm Mint  🔨
-                                        </button>
-                                    </div>
-                                </div>
-                            </Modal.Body>
-                        </Modal>
-                        
+						<Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
+							<Modal.Body style={{ background: "url(" + ModalBG + ")" }}>
+								<div className='promptBody'>
+									<p className="font20">How many tinker you want to mint <br />(Max 10 in single transaction)</p>
+									<input type='number' step="1" min="1" max={nftCount} id="promptQuantity" className="font20" defaultValue="1" />
+									<small id="promptErr">  </small>
+									<div className="promptBtnSection">
+										<button className="promptClose" onClick={handlePromptClose}>
+											✕
+										</button>
+										<button id="mintBtn" className="shake-slow-animation" onClick={() => mintNFT()}>
+											Mint Now 🔨
+										</button>
+									</div>
+								</div>
+							</Modal.Body>
+						</Modal>
+
 					</>
 				);
 
@@ -308,8 +322,8 @@ const config = {
 };
 
 // Define mint date variable 
-const whitelistMintDate = new Date(process.env.REACT_APP_WL_MINT_DATE  * 1000);
+const whitelistMintDate = new Date(process.env.REACT_APP_WL_MINT_DATE * 1000);
 const isWhitelistMintDate = (whitelistMintDate.getTime() <= new Date().getTime());
-const publicMintDate =  new Date(process.env.REACT_APP_PUBLIC_MINT_DATE * 1000);
+const publicMintDate = new Date(process.env.REACT_APP_PUBLIC_MINT_DATE * 1000);
 const isPublicMintDate = (publicMintDate.getTime() <= new Date().getTime());
 

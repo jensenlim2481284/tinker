@@ -1,7 +1,12 @@
  
 
-
-
+@font-face {
+    font-family: 'VT323';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/font/VT323-Regular.ttf') format('truetype');
+  }
+  
 
 
 /**************************************************************************************
