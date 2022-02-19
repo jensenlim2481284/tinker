@@ -18,7 +18,7 @@ export default function Landing() {
     const handleModalClose = () => setModal(false);
 
     // Hook function 
-    useEffect(async () => {
+    useEffect(() => {
 
         // Function to check if minted
         async function checkResponse() {

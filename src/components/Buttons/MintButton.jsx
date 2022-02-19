@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom';
 import { Modal } from 'react-bootstrap';
 import Countdown from 'react-countdown';
 import React, { useState, useEffect } from 'react';
@@ -23,7 +22,7 @@ export default function MintButton({ action }) {
     const handlePromptShow = () => setPrompt(true);
     
 	// Hook function 
-	useEffect(async () => {
+	useEffect(() => {
 
 		// Function to keep track of NEAR wallet connection
 		async function connectWallet() {
@@ -85,8 +84,28 @@ export default function MintButton({ action }) {
 	}
 
 
-	// Function to mint NFT
+	// Function to handle mint
 	async function mintHandler() {
+
+		setIsLoading(true)
+
+		// If not yet connect NEAR wallet, login with NEAR
+		if (!isLogIn)
+			wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
+        // Open modal 
+        else 
+            handlePromptShow();
+
+		setIsLoading(false)
+	}
+
+	// Function to mint NFT
+	async function mintNFT() {
+
+
+		// If not yet connect NEAR wallet, login with NEAR
+		if (!isLogIn)
+			wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
 
         // Validate quantity
         var err =null;
@@ -105,11 +124,11 @@ export default function MintButton({ action }) {
             return false;
         }
 
-		// If not yet connect NEAR wallet, login with NEAR
-		if (!isLogIn)
-			wallet.requestSignIn({ NFTContractID, successUrl, failureUrl });
-
+        // Redirect to NEAR wallet and mint 
 		setIsLoading(true)
+        quantity = parseInt(quantity);
+		let nearAmount = parseInt(mintPrice) * quantity
+		nearAmount =  utils.format.parseNearAmount(nearAmount.toString())
 		const account = wallet.account()
 		const nftContract = new Contract(
 			account, 
@@ -120,16 +139,11 @@ export default function MintButton({ action }) {
 				sender: account,
 			}
 		);
-
-        quantity = parseInt(quantity);
-		let nearAmount = parseInt(mintPrice) * quantity
-		nearAmount =  utils.format.parseNearAmount(nearAmount.toString())
-		let response = await nftContract.nft_candy_machine({
+		await nftContract.nft_candy_machine({
             callbackUrl:'http://localhost:3000/?mint=true&',
             args :{
                 receiver_id: account.accountId,
                 quantity,
-                callbackUrl:'https://test.com',
             },   
             gas: '300000000000000',     
             amount: nearAmount         
@@ -146,7 +160,7 @@ export default function MintButton({ action }) {
 		if (isLogIn) {
 
 			if (isMint === true) return 'Mint Now';
-			else if (isMint == 'out') return 'Mint Out';
+			else if (isMint === 'out') return 'Mint Out';
 			else {
 
 				// Renderer countdown callback with condition
@@ -170,7 +184,7 @@ export default function MintButton({ action }) {
 	function renderButton() {
 
 		// Return logout button 
-		if (action == 'Logout') {
+		if (action === 'Logout') {
 			if (isLogIn)
 				return (
 					<div className="logout-btn ">
@@ -186,7 +200,7 @@ export default function MintButton({ action }) {
 			// button component 
 			function btn(enabled, isMint, date) {
 				if (enabled)
-					return (<button onClick={handlePromptShow}>{getText(isMint, date)}</button>);
+					return (<button  onClick={() => mintHandler()}>{getText(isMint, date)}</button>);
 				return (<button disabled>{getText(isMint, date)}</button>);
 			}
 
@@ -202,19 +216,20 @@ export default function MintButton({ action }) {
 
 			// Mint count component 
 			function mintCount() {
-				if (isLogIn)
+				if (isLogIn){
 					var percent = parseInt(nftCount / maxSupply * 100);
-				return (
-					<div id="mintCount" className="container ">
-						<div id="mintCountDesc">
-							<span id='mintPercent'>{percent}%</span>
-							<span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
-						</div>
-						<div className="progress-bar">
-							<span className="progress-bar-fill" style={{ width: percent + "%" }}></span>
-						</div>
-					</div>
-				)
+                    return (
+                        <div id="mintCount" className="container ">
+                            <div id="mintCountDesc">
+                                <span id='mintPercent'>{percent}%</span>
+                                <span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
+                            </div>
+                            <div className="progress-bar">
+                                <span className="progress-bar-fill" style={{ width: percent + "%" }}></span>
+                            </div>
+                        </div>
+                    )
+                }
 				return (<></>);
 			}
 
@@ -226,7 +241,7 @@ export default function MintButton({ action }) {
 					<>
 						<div className="mint-btn">
                             <div className="mint-btn-section">
-                                <img src={Button} />
+                                <img src={Button} alt="Button background"/>
                                 {btn(enabled, isMint, date)}
                             </div>
 							{wlDesc(wlDesc)}
@@ -243,7 +258,7 @@ export default function MintButton({ action }) {
                                         <button className="promptClose" onClick={handlePromptClose}>
                                             ✕
                                         </button>
-                                        <button id="mintBtn" className="shake-slow-animation" onClick={() => mintHandler()}>
+                                        <button id="mintBtn" className="shake-slow-animation" onClick={() => mintNFT()}>
                                             Confirm Mint  🔨
                                         </button>
                                     </div>
