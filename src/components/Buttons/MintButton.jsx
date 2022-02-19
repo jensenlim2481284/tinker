@@ -203,12 +203,12 @@ export default function MintButton({ action }) {
 			// Mint count component 
 			function mintCount() {
 				if (isLogIn)
-					var percent = parseInt(nftCount / maxSupply * 100);
+					var percent = parseInt((maxSupply-nftCount) / maxSupply * 100);
 				return (
 					<div id="mintCount" className="container ">
 						<div id="mintCountDesc">
 							<span id='mintPercent'>{percent}%</span>
-							<span id='mintCountLeft'>NFT Left -  {nftCount} / {maxSupply}</span>
+							<span id='mintCountLeft'>Tinkers Deployed -  {maxSupply-nftCount} / {maxSupply}</span>
 						</div>
 						<div className="progress-bar">
 							<span className="progress-bar-fill" style={{ width: percent + "%" }}></span>
@@ -236,7 +236,7 @@ export default function MintButton({ action }) {
                         <Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
                             <Modal.Body  style={{ background: "url("+ModalBG+")" }}>
                                 <div className='promptBody'>
-                                    <p className="font20">How many tinker you want to mint</p>
+                                    <p className="font20">How many tinker you want to mint (Max 10 in single transaction)</p>
                                     <input type='number' step="1" min="1" max={nftCount} id="promptQuantity" className="font20" defaultValue="1"/>
                                     <small id="promptErr">  </small>
                                     <div className="promptBtnSection">
