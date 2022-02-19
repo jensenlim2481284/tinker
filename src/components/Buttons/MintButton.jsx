@@ -10,6 +10,7 @@ export default function MintButton({ action }) {
 
 
 	// Define hook variable 
+	const [wltoken, setWltoken] = useState(0);
 	const [wallet, setWallet] = useState(null);
 	const [isLogIn, setIsLogin] = useState(false);
 	const [nftCount, setNftCount] = useState(null);
@@ -50,6 +51,7 @@ export default function MintButton({ action }) {
 				);
 				let ftBalance = await ftContract.ft_balance_of({ account_id: account.accountId })
 				setIsWhitelisted(ftBalance > 0);
+                setWltoken(ftBalance);
 
 				// Check how many nft left 
 				const nftContract = new Contract(
@@ -207,7 +209,7 @@ export default function MintButton({ action }) {
 			function wlDesc() {
 				if (isLogIn) {
 					if (!isPublicMintDate && !isWhitelisted)
-						return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-35px" }}>You are not whitelisted, please join the public mint later</small>)
+						return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-45px" }}>You are not whitelisted, please join the public mint later</small>)
 					return (<small id="mintDesc">{(isWhitelisted) ? '-  You are whitelisted  -' : '-  You are not whitelisted  -'}</small>)
 				}
 				return (<></>);

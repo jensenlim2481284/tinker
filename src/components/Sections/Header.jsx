@@ -14,6 +14,7 @@ export default function Header() {
         <img id='ship2' src={Ship2Image} alt="ship"/>
         <div id="leftSide">
             <div>
+                <span id="nearPriceSpan">6 $NEAR per NFT</span>
                 <h1 className="bold font60">3,333 Tinkers assembled on NEAR</h1>
                 <h2 className="font15 regular" >
                     Join us and be part of the force building NFT ecosystem on NEAR

@@ -203,6 +203,7 @@
 
 #leftSide h1{
     position: relative;
+    margin-top: 15px;
 }
 
 #leftSide h2{
@@ -1140,3 +1141,9 @@
     }
 }
 
+
+#nearPriceSpan{
+    padding: 5px 15px;
+    background: #4e1f09;
+    box-shadow: 4px 4px #321000;
+}
