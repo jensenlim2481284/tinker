@@ -116,8 +116,18 @@ export default function MintButton({ action }) {
 			err = "Please only enter numeric characters only!";
 		if (quantity <= 0)
 			err = "Minimum mint quantity is 1";
-		if (quantity > nftCount)
-			err = "Maximum mint quantity is " + nftCount;
+        if(isPublicMintDate){
+            if (quantity > 10)
+                err = "Maximum mint quantity is 10";
+        }
+        else 
+        {
+            var wlcheck = (wltoken>10)?10:wltoken;
+            if (quantity > wlcheck)
+                err = "Maximum mint quantity is " + wlcheck;
+        }
+
+		
 		if (err !== null) {
 			let errElement = document.getElementById("promptErr");
 			errElement.innerHTML = err;
@@ -141,7 +151,7 @@ export default function MintButton({ action }) {
 			}
 		);
 		await nftContract.nft_candy_machine({
-			callbackUrl: 'http://localhost:3000/?mint=true&',
+			callbackUrl: successUrl + '?mint=true&',
 			args: {
 				receiver_id: account.accountId,
 				quantity,
@@ -160,7 +170,11 @@ export default function MintButton({ action }) {
 		if (isLoading) return 'Loading...'
 		if (isLogIn) {
 
-			if (isMint === true) return 'Mint Now';
+			if (isMint === true){
+                if(isWhitelistMintDate && isWhitelisted)
+                    return 'Whitelist Mint';
+                return 'Mint Now';
+            }
 			else if (isMint === 'out') return 'Mint Out';
 			else {
 
@@ -208,9 +222,11 @@ export default function MintButton({ action }) {
 			// Whitelist description component 
 			function wlDesc() {
 				if (isLogIn) {
-					if (!isPublicMintDate && !isWhitelisted)
-						return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-45px" }}>You are not whitelisted, please join the public mint later</small>)
-					return (<small id="mintDesc">{(isWhitelisted) ? '-  You are whitelisted  -' : '-  You are not whitelisted  -'}</small>)
+                    if(isWhitelistMintDate){
+                        if(isWhitelisted)
+                           	return (<small id="mintDesc">-  You are whitelisted : {wltoken} WL token(s) -</small>)
+                        return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-45px" }}>You are not whitelisted, please join the public mint later</small>)
+                    }
 				}
 				return (<></>);
 			}
@@ -218,7 +234,7 @@ export default function MintButton({ action }) {
 			// Mint count component 
 			function mintCount() {
 				if (isLogIn) {
-					var percent = parseInt(maxSupply - nftCount / maxSupply * 100);
+					var percent = parseInt((maxSupply - nftCount) / maxSupply * 100);
 					return (
 						<div id="mintCount" className="container ">
 							<div id="mintCountDesc">
@@ -235,6 +251,51 @@ export default function MintButton({ action }) {
 			}
 
 
+			// Mint modal component 
+			function mintModal() {
+				if(isWhitelistMintDate){
+                    return (
+						<Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
+							<Modal.Body style={{ background: "url(" + ModalBG + ")" }}>
+								<div className='promptBody'>
+									<p className="font20">How many tinker you want to mint <br />(You can only mint {(wltoken>10)?10:wltoken} NFT)</p>
+									<input type='number' step="1" min="1" max={(wltoken>10)?10:wltoken} id="promptQuantity" className="font20" defaultValue="1" />
+									<small id="promptErr">  </small>
+									<div className="promptBtnSection">
+										<button className="promptClose" onClick={handlePromptClose}>
+											✕
+										</button>
+										<button id="mintBtn" className="shake-slow-animation" onClick={() => mintNFT()}>
+											Mint Now 🔨
+										</button>
+									</div>
+								</div>
+							</Modal.Body>
+						</Modal>
+                    )
+                }
+                return (
+                    <Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
+                        <Modal.Body style={{ background: "url(" + ModalBG + ")" }}>
+                            <div className='promptBody'>
+                                <p className="font20">How many tinker you want to mint <br />(Max 10 in single transaction)</p>
+                                <input type='number' step="1" min="1" max="10" id="promptQuantity" className="font20" defaultValue="1" />
+                                <small id="promptErr">  </small>
+                                <div className="promptBtnSection">
+                                    <button className="promptClose" onClick={handlePromptClose}>
+                                        ✕
+                                    </button>
+                                    <button id="mintBtn" className="shake-slow-animation" onClick={() => mintNFT()}>
+                                        Mint Now 🔨
+                                    </button>
+                                </div>
+                            </div>
+                        </Modal.Body>
+                    </Modal>
+                )
+			}
+
+
 			// mint button component 
 			function mintBtn(enabled = true, isMint = true, date = null) {
 
@@ -248,25 +309,7 @@ export default function MintButton({ action }) {
 							{wlDesc(wlDesc)}
 						</div>
 						{mintCount()}
-
-						<Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
-							<Modal.Body style={{ background: "url(" + ModalBG + ")" }}>
-								<div className='promptBody'>
-									<p className="font20">How many tinker you want to mint <br />(Max 10 in single transaction)</p>
-									<input type='number' step="1" min="1" max={nftCount} id="promptQuantity" className="font20" defaultValue="1" />
-									<small id="promptErr">  </small>
-									<div className="promptBtnSection">
-										<button className="promptClose" onClick={handlePromptClose}>
-											✕
-										</button>
-										<button id="mintBtn" className="shake-slow-animation" onClick={() => mintNFT()}>
-											Mint Now 🔨
-										</button>
-									</div>
-								</div>
-							</Modal.Body>
-						</Modal>
-
+						{mintModal()}
 					</>
 				);
 

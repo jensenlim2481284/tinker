@@ -47,7 +47,7 @@ export default function Landing() {
         <Modal id='responseModal' show={modal} onHide={handleModalClose} >
             <Modal.Body style={{ background: "url("+ModalBG+")" }}>
                 <div className='promptBody'>
-                    <p className="font20">{ (modalErr)?decodeURIComponent(modalErr):"Successfuly Minted" }</p>
+                    <p className="font20">{ (modalErr)?decodeURIComponent(modalErr):"Congratulation, you have minted Tinker(s) successfully!" }</p>
                     <div className="promptBtnSection">
                         <button className="promptClose" onClick={handleModalClose}> ✕  </button>
                     </div>
