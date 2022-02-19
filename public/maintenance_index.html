@@ -1,0 +1,100 @@
+
+
+
+<!-- To use swap with index.html and invalidate web cache -->
+<!-- mv index.html tmp_index.html && mv maintenance_index.html index.html && mv tmp_index.html maintenance_index.html -->
+
+
+
+<!DOCTYPE html>
+<title>Site Maintenance</title>
+<style>
+    body {
+        text-align: center;
+        padding: 20px;
+    }
+
+    @font-face {
+        font-family: 'VT323';
+        font-style: normal;
+        font-weight: 400;
+        src: url('VT323-Regular.ttf') format('truetype');
+    }
+    
+
+    @media (min-width: 768px) {
+        body {
+            padding-top: 150px;
+        }
+    }
+
+    h1 {
+        font-size: 50px;
+    }
+    #root{
+        display: none;
+    }
+
+    body {
+        font: 20px Helvetica, sans-serif;
+        color: #333;
+        background-color: black;
+        font-family: 'VT323', sans-serif;
+    }
+
+    article {
+        display: block;
+        text-align: left;
+        max-width: 650px;
+        margin: 0 auto;
+    }
+    article h1{
+        position: absolute;
+        top: calc(50% - 150px);
+        left: 50%;
+        transform: translate(-50%,-50%);
+        text-transform: uppercase;
+        color: #e5ceaf;
+        font-size: 1.4rem;
+    }
+    #modal{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 500px;
+        height: 320px;
+    }
+    #banner{
+        position: absolute;
+        top: calc(50% - 150px);
+        left: 50%;
+        transform: translate(-50%,-50%);
+        width: 368px;
+        height: auto;
+        box-shadow: 3px 3px 25px black;
+    }
+    #content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        font-size: 1.1rem;
+        color: #fff1e2;
+        width: 350px;
+    }
+</style>
+
+<img src="modal.png" id="modal"/>
+<img src="banner.png" id='banner'/>
+<article>
+  <h1>We'll be back soon!</h1>
+  <div id="content">
+    <p>
+      Sorry for the inconvenience but we&rsquo;re performing some maintenance at the moment.We&rsquo;ll be back online
+      shortly!
+    </p>
+    <br/>
+    <p>&mdash; The Tinkerunion Team</p>
+  </div>
+</article>
