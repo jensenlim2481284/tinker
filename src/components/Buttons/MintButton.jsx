@@ -222,7 +222,7 @@ export default function MintButton({ action }) {
 			// Whitelist description component 
 			function wlDesc() {
 				if (isLogIn) {
-                    if(isWhitelistMintDate){
+                    if(isWhitelistMintDate && !isPublicMintDate){
                         if(isWhitelisted)
                            	return (<small id="mintDesc">-  You are whitelisted : {wltoken} WL token(s) -</small>)
                         return (<small id="mintDesc" style={{ textAlign: "left", bottom: "-45px" }}>You are not whitelisted, please join the public mint later</small>)
@@ -253,7 +253,7 @@ export default function MintButton({ action }) {
 
 			// Mint modal component 
 			function mintModal() {
-				if(isWhitelistMintDate){
+				if(isWhitelistMintDate & !isPublicMintDate){
                     return (
 						<Modal id='promptModal' show={prompt} onHide={handlePromptClose} >
 							<Modal.Body style={{ background: "url(" + ModalBG + ")" }}>
