@@ -1148,3 +1148,6 @@
     background: #4e1f09;
     box-shadow: 4px 4px #321000;
 }
+#sideNav{
+    overflow: auto;
+}
